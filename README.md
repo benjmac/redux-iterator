@@ -1,22 +1,24 @@
-### Installation Test
+# redux-iterator
+
+### Header
 Readme practice
 
 **TEST** and **moreTest** this repository.
 
-Then insall the dependencies
+Redux Iterator tests look like
 
 ```
-npm install
+One code sample
 ```
 
-Start webpack
+More descriptions
 
 ```
-npm run build-watch
+second code example
 ```
 
-To start the server
+And yet another example
 
 ```
-npm start
+third code example
 ```
