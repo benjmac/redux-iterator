@@ -1,6 +1,6 @@
 # redux-iterator
 
-### Header
+### About
 Readme practice
 
 **TEST** and **moreTest** this repository.
