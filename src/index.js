@@ -23,4 +23,4 @@ const reduxIterator = ({dispatch}) => next => action => {
   }
 }
 
-export default reduxIterator;
+module.exports = reduxIterator;
