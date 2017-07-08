@@ -41,15 +41,15 @@ const testReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case UPDATE_NUM1:
-        newState.num1 = action.num
+        newState.num1 = action.data
         break;
 
     case UPDATE_NUM2:
-        newState.num2 = action.num
+        newState.num2 = action.data
         break;
 
     case UPDATE_NUM3:
-        newState.num3 = action.num
+        newState.num3 = action.data
         break;
 
     default:

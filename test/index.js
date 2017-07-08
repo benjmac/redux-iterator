@@ -16,10 +16,10 @@ describe('redux-iterator', function () {
   const UPDATE_NUM1 = 'UPDATE_NUM1';
   const UPDATE_NUM2 = 'UPDATE_NUM2';
   const UPDATE_NUM3 = 'UPDATE_NUM3';
-  const createAction = (type, num) => {
+  const createAction = (type, data) => {
     return {
       type,
-      num,
+      data,
     }
   }
 
