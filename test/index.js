@@ -1,3 +1,6 @@
+// import configureMockStore from 'redux-mock-store'
+// import nock from 'nock'
+const store = require('./store.js')
 const chai = require('chai');
 const assert = chai.assert;
 chai.use(require('chai-spies'));
@@ -5,20 +8,33 @@ const expect = chai.expect;
 
 const reduxIterator = require('../src/index');
 
-// import lodash for deep equal of objects
-// _.isEqual(object, other);
+// const middlewares = [reduxIterator]
+// const mockStore = configureMockStore(middlewares)
 
-const createAction = (type, data) => {
-  return {
-    type,
-    data,
-  }
-}
+// describe('async actions', () => {
+//   afterEach(() => {
+//     nock.cleanAll()
+//   })
 
 
-describe('Testing Tests', function () {
+describe('redux-iterator', function () {
 
   const obj = { 'test': 1 }
+  const createAction = (type, data) => {
+    return {
+      type,
+      data,
+    }
+  }
+
+  describe('testing reduxIterator', function () {
+
+    it('Confirm it is a function', function () {
+      assert.typeOf(reduxIterator, 'function');
+      assert.strictEqual(reduxIterator.length, 1);
+    });
+
+  });
 
   describe('testing obj', function () {
 
@@ -28,13 +44,6 @@ describe('Testing Tests', function () {
 
   });
 
-  describe('testing reduxIterator', function () {
-
-    it('Confirm it is a function', function () {
-      assert.typeOf(reduxIterator, 'function');
-    });
-
-  });
 
   describe('deep equal test', function () {
     const obj1 = {
@@ -61,37 +70,16 @@ describe('Testing Tests', function () {
 
   });
 
-  describe('Testing the hooks console.logs', function () {
+  describe('Test State', function () {
 
-  const testObj = {}
-
-  afterEach(function () {
-    console.log('afterEach run outter!');
-  });
-
-  beforeEach(function () {
-    console.log('before run outter!');
-  });
-
-  describe('in some nested contexts', function () {
-    // before(function () {
-    //   console.log('nested before run!');
-    // });
-
-    it('runs after this block', function () {
-      // console.log('nested it run!');
-      testObj.num = 1
-      console.log(testObj);
-
+    it('get stores state', function () {
+      console.log(store.getState());
     });
 
-    it('runs again after this block', function () {
-      testObj.num +=1
-      console.log(testObj)
-    });
   });
-});
 
+
+  //closing bracket for
 });
 
 // A test for a Map
