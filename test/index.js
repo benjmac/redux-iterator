@@ -8,22 +8,18 @@ const expect = chai.expect;
 
 const reduxIterator = require('../src/index');
 
-// const middlewares = [reduxIterator]
-// const mockStore = configureMockStore(middlewares)
-
-// describe('async actions', () => {
-//   afterEach(() => {
-//     nock.cleanAll()
-//   })
 
 
 describe('redux-iterator', function () {
 
   const obj = { 'test': 1 }
-  const createAction = (type, data) => {
+  const UPDATE_NUM1 = 'UPDATE_NUM1';
+  const UPDATE_NUM2 = 'UPDATE_NUM2';
+  const UPDATE_NUM3 = 'UPDATE_NUM3';
+  const createAction = (type, num) => {
     return {
       type,
-      data,
+      num,
     }
   }
 
@@ -73,6 +69,12 @@ describe('redux-iterator', function () {
   describe('Test State', function () {
 
     it('get stores state', function () {
+      console.log(store.getState());
+    });
+
+    it('updateNum1', function () {
+      console.log(createAction(UPDATE_NUM1, 59));
+      store.dispatch(createAction(UPDATE_NUM1, 59));
       console.log(store.getState());
     });
 

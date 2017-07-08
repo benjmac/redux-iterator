@@ -30,7 +30,9 @@ const updateNum3 = (num) => ({
 const initialState = {
   num1: 0,
   num2: 5,
-  num3: 15
+  num3: 15,
+  name: '',
+  arr: [],
 };
 
 /* Reducer Function */
