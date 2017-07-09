@@ -8,6 +8,7 @@ const reduxIterator = require('../src/index');
 const UPDATE_NUM1 = 'UPDATE_NUM1';
 const UPDATE_NUM2 = 'UPDATE_NUM2';
 const UPDATE_NUM3 = 'UPDATE_NUM3';
+const UPDATE_ARRAY = 'UPDATE_ARRAY';
 const RESET_STATE = 'RESET_STATE';
 
 /* Action Creators */
@@ -51,6 +52,10 @@ const testReducer = (state = initialState, action) => {
 
     case UPDATE_NUM3:
         newState.num3 = action.data
+        break;
+
+    case UPDATE_ARRAY:
+        newState.arr = action.data
         break;
 
     case RESET_STATE:

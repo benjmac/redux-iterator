@@ -12,12 +12,11 @@ const reduxIterator = require('../src/index');
 
 describe('redux-iterator', () => {
 
-  const obj = { 'test': 1 }
-
   const RESET_STATE = 'RESET_STATE';
   const UPDATE_NUM1 = 'UPDATE_NUM1';
   const UPDATE_NUM2 = 'UPDATE_NUM2';
   const UPDATE_NUM3 = 'UPDATE_NUM3';
+  const UPDATE_ARRAY = 'UPDATE_ARRAY';
   const createAction = (type, data) => {
     return {
       type,
@@ -33,15 +32,6 @@ describe('redux-iterator', () => {
     });
 
   });
-
-  describe('testing obj', () => {
-
-    it('Test obj.test value', () => {
-      expect(obj.test).to.equal(1);
-    });
-
-  });
-
 
   describe('deep equal test', () => {
     const obj1 = {
@@ -81,7 +71,7 @@ describe('redux-iterator', () => {
       console.log(store.getState());
     });
 
-     it('get stores state', () => {
+    it('get stores state', () => {
       console.log('is store clear?', store.getState());
     });
 
@@ -90,13 +80,34 @@ describe('redux-iterator', () => {
 
   describe('Array Test', () => {
 
-    it('get stores state', () => {
-      let test = []
-      test.push(createAction(UPDATE_NUM1, 78))
-      test.push(createAction(UPDATE_NUM2, 44))
-      test.push(createAction(UPDATE_NUM3, 34))
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+    it('dispatches array', () => {
+      const desiredState = {
+        num1: 78,
+        num2: 44,
+        num3: 34,
+        name: '',
+        arr: [],
+      };
+      let test = [];
+      test.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
       store.dispatch(test);
-      console.log(store.getState());
+      assert.deepEqual(store.getState(), desiredState);
+    });
+
+    it('nested arrays', () => {
+      const desiredState = {
+        num1: 55,
+        num2: 12,
+        num3: 66,
+        name: '',
+        arr: ['hello world'],
+      };
+      let test = [];
+      test.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)],createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
+      store.dispatch(test);
+      assert.deepEqual(store.getState(), desiredState);
     });
 
   });
