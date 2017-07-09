@@ -10,9 +10,11 @@ const reduxIterator = require('../src/index');
 
 
 
-describe('redux-iterator', function () {
+describe('redux-iterator', () => {
 
   const obj = { 'test': 1 }
+
+  const RESET_STATE = 'RESET_STATE';
   const UPDATE_NUM1 = 'UPDATE_NUM1';
   const UPDATE_NUM2 = 'UPDATE_NUM2';
   const UPDATE_NUM3 = 'UPDATE_NUM3';
@@ -23,25 +25,25 @@ describe('redux-iterator', function () {
     }
   }
 
-  describe('testing reduxIterator', function () {
+  describe('testing reduxIterator', () => {
 
-    it('Confirm it is a function', function () {
+    it('Confirm it is a function', () => {
       assert.typeOf(reduxIterator, 'function');
       assert.strictEqual(reduxIterator.length, 1);
     });
 
   });
 
-  describe('testing obj', function () {
+  describe('testing obj', () => {
 
-    it('Test obj.test value', function () {
+    it('Test obj.test value', () => {
       expect(obj.test).to.equal(1);
     });
 
   });
 
 
-  describe('deep equal test', function () {
+  describe('deep equal test', () => {
     const obj1 = {
       name: "Ben",
       siblings: ["Bob", "Tom"]
@@ -56,34 +58,39 @@ describe('redux-iterator', function () {
       siblings: ["Tara", "Nancy"]
     }
 
-    it('see if this thing even works, returns true', function () {
+    it('see if this thing even works, returns true', () => {
       assert.deepEqual(obj1, obj2);
     });
 
-    it('see if this thing even works, returns false', function () {
+    it('see if this thing even works, returns false', () => {
       assert.notDeepEqual(obj1, obj3);
     });
 
   });
 
-  describe('Test State', function () {
+  describe('Test State', () => {
 
-    // after()
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    it('get stores state', function () {
+    it('get stores state', () => {
       console.log(store.getState());
     });
 
-    it('updateNum1', function () {
+    it('updateNum1', () => {
       store.dispatch(createAction(UPDATE_NUM1, 59));
       console.log(store.getState());
     });
 
+     it('get stores state', () => {
+      console.log('is store clear?', store.getState());
+    });
+
+
   });
 
-  describe('Array Test', function () {
+  describe('Array Test', () => {
 
-    it('get stores state', function () {
+    it('get stores state', () => {
       let test = []
       test.push(createAction(UPDATE_NUM1, 78))
       test.push(createAction(UPDATE_NUM2, 44))
