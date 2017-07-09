@@ -68,13 +68,27 @@ describe('redux-iterator', function () {
 
   describe('Test State', function () {
 
+    // after()
+
     it('get stores state', function () {
       console.log(store.getState());
     });
 
     it('updateNum1', function () {
-      console.log(createAction(UPDATE_NUM1, 59));
       store.dispatch(createAction(UPDATE_NUM1, 59));
+      console.log(store.getState());
+    });
+
+  });
+
+  describe('Array Test', function () {
+
+    it('get stores state', function () {
+      let test = []
+      test.push(createAction(UPDATE_NUM1, 78))
+      test.push(createAction(UPDATE_NUM2, 44))
+      test.push(createAction(UPDATE_NUM3, 34))
+      store.dispatch(test);
       console.log(store.getState());
     });
 

@@ -20,14 +20,12 @@
     "middleware",
     "redux-middleware"
   ],
-  "author": "Dan Abramov <dan.abramov@me.com>",
-  "license": "MIT",
+  "author": "Ben McCain",
+  "license": "ISC",
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-spies": "^0.7.1",
     "mocha": "^2.2.5",
-    "nock": "^9.0.13",
-    "redux": "^3.7.1",
-    "redux-mock-store": "^1.2.3"
+    "redux": "^3.7.1"
   }
 }
