@@ -183,9 +183,9 @@ describe('redux-iterator', () => {
 
       const testSet = new Set();
       testSet.add({ 'key': createAction(UPDATE_NUM1, 281) })
-        .add(createAction(UPDATE_NUM2, 330))
-        .add(createAction(UPDATE_NUM3, 8004))
-        .add(createAction(UPDATE_NAME, 'Mr. Jones'))
+        .add([createAction(UPDATE_NUM2, 330)])
+        .add(new Map([['key1', createAction(UPDATE_NUM3, 8004)]]))
+        .add(new Set([createAction(UPDATE_NAME, 'Mr. Jones')]))
         .add(createAction(UPDATE_ARRAY, ['Nested', 'Fun']));
       store.dispatch(testSet);
       assert.deepEqual(store.getState(), desiredState);
