@@ -165,7 +165,28 @@ describe('redux-iterator', () => {
       };
 
       const testSet = new Set();
-      testSet.add(createAction(UPDATE_NUM1, 1234)).add(createAction(UPDATE_NUM2, 5678)).add(createAction(UPDATE_NUM3, 9101112));
+      testSet.add(createAction(UPDATE_NUM1, 1234))
+        .add(createAction(UPDATE_NUM2, 5678))
+        .add(createAction(UPDATE_NUM3, 9101112));
+      store.dispatch(testSet);
+      assert.deepEqual(store.getState(), desiredState);
+    });
+
+    it('dispatches set with nested items', () => {
+      const desiredState = {
+        num1: 281,
+        num2: 330,
+        num3: 8004,
+        name: 'Mr. Jones',
+        arr: ['Nested', 'Fun'],
+      };
+
+      const testSet = new Set();
+      testSet.add({ 'key': createAction(UPDATE_NUM1, 281) })
+        .add(createAction(UPDATE_NUM2, 330))
+        .add(createAction(UPDATE_NUM3, 8004))
+        .add(createAction(UPDATE_NAME, 'Mr. Jones'))
+        .add(createAction(UPDATE_ARRAY, ['Nested', 'Fun']));
       store.dispatch(testSet);
       assert.deepEqual(store.getState(), desiredState);
     });
