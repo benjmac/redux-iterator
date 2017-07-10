@@ -192,6 +192,29 @@ describe('redux-iterator', () => {
     });
   });
 
+  describe('Generator Test', () => {
+
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+    it('dispatches generator', () => {
+      const desiredState = {
+        num1: 1,
+        num2: 2,
+        num3: 3,
+        name: '',
+        arr: [],
+      };
+
+      function *test() {
+        yield createAction(UPDATE_NUM1, 1);
+        yield createAction(UPDATE_NUM2, 2);
+        yield createAction(UPDATE_NUM3, 3);
+      }
+      console.log(test());
+      store.dispatch(test());
+    });
+  });
+
   //closing bracket for
 });
 
