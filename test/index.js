@@ -165,9 +165,7 @@ describe('redux-iterator', () => {
       };
 
       const testSet = new Set();
-      testSet.add(createAction(UPDATE_NUM1, 1234));
-      testSet.add(createAction(UPDATE_NUM2, 5678));
-      testSet.add(createAction(UPDATE_NUM3, 9101112));
+      testSet.add(createAction(UPDATE_NUM1, 1234)).add(createAction(UPDATE_NUM2, 5678)).add(createAction(UPDATE_NUM3, 9101112));
       store.dispatch(testSet);
       assert.deepEqual(store.getState(), desiredState);
     });
