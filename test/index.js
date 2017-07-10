@@ -1,6 +1,6 @@
 'use strict'
 
-import store, { RESET_STATE, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY } from './store.js';
+import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY } from './store.js';
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
