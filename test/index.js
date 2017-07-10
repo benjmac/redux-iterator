@@ -1,4 +1,4 @@
-import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY, UPDATE_NAME } from './store.js';
+import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY, UPDATE_NAME, initialState } from './store.js';
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
@@ -15,7 +15,7 @@ describe('redux-iterator', () => {
     }
   }
 
-  describe('testing reduxIterator', () => {
+  describe('Testing reduxIterator is function', () => {
 
     it('Confirm it is a function', () => {
       assert.typeOf(reduxIterator, 'function');
@@ -105,6 +105,21 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
+    it('dispatches object with null value, not dispatched to store by redux-iterator', () => {
+
+      store.dispatch({ 'test': null });
+      assert.deepEqual(store.getState(), initialState);
+    });
+
+    it('dispatches null and returns error, as is not an object', () => {
+
+      try {
+        store.dispatch(null);
+      } catch (err) {
+        expect(err).to.be.an('error');
+      }
+    });
+
   });
 
   describe('Map Test', () => {
@@ -138,10 +153,29 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-  });
+    describe('Set Test', () => {
 
-  //closing bracket for
-});
+      afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+      it('dispatches set', () => {
+        const desiredState = {
+          num1: 1234,
+          num2: 5678,
+          num3: 9101112,
+          name: '',
+          arr: [],
+        };
+
+        const testSet = new Set();
+        testSet.add(updateNum1(this.props.num1 + 1));
+        store.dispatch(testSet);
+        assert.deepEqual(store.getState(), desiredState);
+      });
+
+    });
+
+    //closing bracket for
+  });
 
 // A test for a Set
 
