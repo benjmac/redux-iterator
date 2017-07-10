@@ -105,7 +105,7 @@ describe('redux-iterator', () => {
         arr: ['hello world'],
       };
       let test = [];
-      test.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)],createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
+      test.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
       store.dispatch(test);
       assert.deepEqual(store.getState(), desiredState);
     });
