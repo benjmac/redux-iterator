@@ -21,7 +21,6 @@ describe('redux-iterator', () => {
       assert.typeOf(reduxIterator, 'function');
       assert.strictEqual(reduxIterator.length, 1);
     });
-
   });
 
   describe('Array Test', () => {
@@ -57,7 +56,6 @@ describe('redux-iterator', () => {
       store.dispatch(arrTest);
       assert.deepEqual(store.getState(), desiredState);
     });
-
   });
 
   describe('Object Test', () => {
@@ -119,7 +117,6 @@ describe('redux-iterator', () => {
         expect(err).to.be.an('error');
       }
     });
-
   });
 
   describe('Map Test', () => {
@@ -152,30 +149,32 @@ describe('redux-iterator', () => {
       store.dispatch(mapTest);
       assert.deepEqual(store.getState(), desiredState);
     });
-
-    describe('Set Test', () => {
-
-      afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
-
-      it('dispatches set', () => {
-        const desiredState = {
-          num1: 1234,
-          num2: 5678,
-          num3: 9101112,
-          name: '',
-          arr: [],
-        };
-
-        const testSet = new Set();
-        testSet.add(updateNum1(this.props.num1 + 1));
-        store.dispatch(testSet);
-        assert.deepEqual(store.getState(), desiredState);
-      });
-
-    });
-
-    //closing bracket for
   });
+
+  describe('Set Test', () => {
+
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+    it('dispatches set', () => {
+      const desiredState = {
+        num1: 1234,
+        num2: 5678,
+        num3: 9101112,
+        name: '',
+        arr: [],
+      };
+
+      const testSet = new Set();
+      testSet.add(createAction(UPDATE_NUM1, 1234));
+      testSet.add(createAction(UPDATE_NUM2, 5678));
+      testSet.add(createAction(UPDATE_NUM3, 9101112));
+      store.dispatch(testSet);
+      assert.deepEqual(store.getState(), desiredState);
+    });
+  });
+
+  //closing bracket for
+});
 
 // A test for a Set
 
@@ -186,4 +185,4 @@ describe('redux-iterator', () => {
 
 // Can address nested items
 
-//then updated state...
+//then updated state
