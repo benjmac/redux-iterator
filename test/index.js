@@ -1,6 +1,4 @@
-'use strict'
-
-import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY } from './store.js';
+import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY, UPDATE_NAME } from './store.js';
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
@@ -26,51 +24,6 @@ describe('redux-iterator', () => {
 
   });
 
-  describe('deep equal test', () => {
-    const obj1 = {
-      name: "Ben",
-      siblings: ["Bob", "Tom"]
-    }
-    const obj2 = {
-      name: "Ben",
-      siblings: ["Bob", "Tom"]
-    }
-
-    const obj3 = {
-      name: "Ben",
-      siblings: ["Tara", "Nancy"]
-    }
-
-    it('see if this thing even works, returns true', () => {
-      assert.deepEqual(obj1, obj2);
-    });
-
-    it('see if this thing even works, returns false', () => {
-      assert.notDeepEqual(obj1, obj3);
-    });
-
-  });
-
-  describe('Test State', () => {
-
-    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
-
-    it('get stores state', () => {
-      console.log(store.getState());
-    });
-
-    it('updateNum1', () => {
-      store.dispatch(createAction(UPDATE_NUM1, 59));
-      console.log(store.getState());
-    });
-
-    it('get stores state', () => {
-      console.log('is store clear?', store.getState());
-    });
-
-
-  });
-
   describe('Array Test', () => {
 
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
@@ -83,13 +36,14 @@ describe('redux-iterator', () => {
         name: '',
         arr: [],
       };
-      let test = [];
-      test.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
-      store.dispatch(test);
+
+      let arrTest = [];
+      arrTest.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
+      store.dispatch(arrTest);
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    it('nested arrays', () => {
+    it('dispatches array with nested array', () => {
       const desiredState = {
         num1: 55,
         num2: 12,
@@ -97,9 +51,57 @@ describe('redux-iterator', () => {
         name: '',
         arr: ['hello world'],
       };
-      const test = [];
-      test.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
-      store.dispatch(test);
+
+      const arrTest = [];
+      arrTest.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
+      store.dispatch(arrTest);
+      assert.deepEqual(store.getState(), desiredState);
+    });
+
+  });
+
+  describe('Object Test', () => {
+    //test the object edge cases here?
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+    it('dispatches object', () => {
+      const desiredState = {
+        num1: 10,
+        num2: 20,
+        num3: 30,
+        name: 'Foo-Bar',
+        arr: ['Hello', 'World'],
+      };
+
+      let objTest = {
+        key1: createAction(UPDATE_NUM1, 10),
+        key2: createAction(UPDATE_NUM2, 20),
+        key3: createAction(UPDATE_NUM3, 30),
+        key4: createAction(UPDATE_NAME, 'Foo-Bar'),
+        key5: createAction(UPDATE_ARRAY, ['Hello', 'World'])
+      }
+
+      store.dispatch(objTest);
+      assert.deepEqual(store.getState(), desiredState);
+    });
+
+    it('dispatches object with nested elements', () => {
+      const desiredState = {
+        num1: 9087,
+        num2: 34545,
+        num3: 958980049,
+        name: 'Dios-Mio',
+        arr: ['Diego', 'Maradona'],
+      };
+
+      let objTest = {
+        key1: { 'key': createAction(UPDATE_NUM1, 9087) },
+        key2: [[createAction(UPDATE_NUM2, 34545)], { key3: createAction(UPDATE_NUM3, 958980049) }],
+        key4: createAction(UPDATE_NAME, 'Dios-Mio'),
+        key5: createAction(UPDATE_ARRAY, ['Diego', 'Maradona'])
+      }
+
+      store.dispatch(objTest);
       assert.deepEqual(store.getState(), desiredState);
     });
 
@@ -109,31 +111,30 @@ describe('redux-iterator', () => {
 
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    it('dispatches array', () => {
+    it('dispatches map', () => {
       const desiredState = {
-        num1: 78,
-        num2: 44,
-        num3: 34,
+        num1: 1,
+        num2: 2,
+        num3: 3,
         name: '',
         arr: [],
       };
-      const test = new Map;
-      test.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
-      store.dispatch(test);
+
+      const mapTest = new Map([['key1', createAction(UPDATE_NUM1, 1)], ['key2', createAction(UPDATE_NUM2, 2)], ['key3', createAction(UPDATE_NUM3, 3)]]);
+      store.dispatch(mapTest);
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    it('nested arrays', () => {
+    it('dispatches map with nested elements(object, array, map)', () => {
       const desiredState = {
-        num1: 55,
-        num2: 12,
-        num3: 66,
-        name: '',
-        arr: ['hello world'],
+        num1: 89,
+        num2: 123,
+        num3: 123684,
+        name: 'Dan',
+        arr: [],
       };
-      let test = [];
-      test.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
-      store.dispatch(test);
+      const mapTest = new Map([['key1', { 'test': createAction(UPDATE_NUM1, 89) }], ['key2', [createAction(UPDATE_NUM2, 123)]], ['key3', new Map([['key', createAction(UPDATE_NUM3, 123684)]])], ['key4', createAction(UPDATE_NAME, 'Dan')]]);
+      store.dispatch(mapTest);
       assert.deepEqual(store.getState(), desiredState);
     });
 
@@ -142,13 +143,7 @@ describe('redux-iterator', () => {
   //closing bracket for
 });
 
-// A test for a Map
-
 // A test for a Set
-
-// A test for an Array
-
-// A test for a standard Object
 
 // A test for a generator
 

@@ -8,6 +8,7 @@ export const UPDATE_NUM2 = 'UPDATE_NUM2';
 export const UPDATE_NUM3 = 'UPDATE_NUM3';
 export const UPDATE_ARRAY = 'UPDATE_ARRAY';
 export const RESET_STATE = 'RESET_STATE';
+export const UPDATE_NAME = 'UPDATE_NAME';
 
 /* Action Creators */
 
@@ -44,6 +45,10 @@ const testReducer = (state = initialState, action) => {
 
     case RESET_STATE:
         newState = initialState;
+        break;
+
+    case UPDATE_NAME:
+        newState.name = action.data
         break;
 
     default:
