@@ -205,7 +205,7 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      function *test() {
+      function* test() {
         yield createAction(UPDATE_NUM1, 1);
         yield createAction(UPDATE_NUM2, 2);
         yield createAction(UPDATE_NUM3, 3);
@@ -214,7 +214,7 @@ describe('redux-iterator', () => {
       store.dispatch(test());
     });
 
-    it('dispatches generator', () => {
+    it('dispatches generator without invoking throws error', () => {
       const desiredState = {
         num1: 1,
         num2: 2,
@@ -223,13 +223,17 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      function *test() {
+      function* test() {
         yield createAction(UPDATE_NUM1, 1);
         yield createAction(UPDATE_NUM2, 2);
         yield createAction(UPDATE_NUM3, 3);
       }
 
-      store.dispatch(test);
+      try {
+        store.dispatch(test);
+      } catch (err) {
+        expect(err).to.be.an('error');
+      }
     });
 
   });
