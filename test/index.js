@@ -212,13 +212,14 @@ describe('redux-iterator', () => {
       }
 
       store.dispatch(test());
+      assert.deepEqual(store.getState(), desiredState);
     });
 
     it('dispatches generator without invoking throws error', () => {
       const desiredState = {
-        num1: 1,
-        num2: 2,
-        num3: 3,
+        num1: 5,
+        num2: 6,
+        num3: 7,
         name: '',
         arr: [],
       };
@@ -236,18 +237,34 @@ describe('redux-iterator', () => {
       }
     });
 
+    it('dispatches generator with nested items', () => {
+      const desiredState = {
+        num1: 7,
+        num2: 8,
+        num3: 9,
+        name: 'Foo',
+        arr: ['Bar'],
+      };
+
+      function* test() {
+        yield new Set([createAction(UPDATE_NUM1, 7)]);
+        yield {'test': createAction(UPDATE_NUM2, 8)};
+        yield [createAction(UPDATE_NUM3, 9)];
+        yield [{'test': new Map([['key1', createAction(UPDATE_NAME, 'Foo')]])}];
+        yield createAction(UPDATE_ARRAY, ['Bar']);
+      }
+
+      store.dispatch(test());
+      assert.deepEqual(store.getState(), desiredState);
+    });
+
   });
 
   //closing bracket for
 });
 
-// A test for a Set
-
-// A test for a generator
-
 // Some tests to try to make it break?
 // if don't invoke generator?
 
 // Can address nested items
-
 //then updated state
