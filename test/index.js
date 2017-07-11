@@ -210,9 +210,28 @@ describe('redux-iterator', () => {
         yield createAction(UPDATE_NUM2, 2);
         yield createAction(UPDATE_NUM3, 3);
       }
-      console.log(test());
+
       store.dispatch(test());
     });
+
+    it('dispatches generator', () => {
+      const desiredState = {
+        num1: 1,
+        num2: 2,
+        num3: 3,
+        name: '',
+        arr: [],
+      };
+
+      function *test() {
+        yield createAction(UPDATE_NUM1, 1);
+        yield createAction(UPDATE_NUM2, 2);
+        yield createAction(UPDATE_NUM3, 3);
+      }
+
+      store.dispatch(test);
+    });
+
   });
 
   //closing bracket for
