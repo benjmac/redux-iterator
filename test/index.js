@@ -2,7 +2,6 @@ import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
-chai.use(require('chai-spies'));
 
 const reduxIterator = require('../src/index');
 
@@ -238,11 +237,5 @@ describe('redux-iterator', () => {
 
   });
 
-  //closing bracket for
+  //closing bracket
 });
-
-// Some tests to try to make it break?
-// if don't invoke generator?
-
-// Can address nested items
-//then updated state
