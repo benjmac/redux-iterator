@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-
 import reduxIterator from '../src/index';
+import thunkMiddleware from 'redux-thunk';
 
 /* Action Types */
 export const UPDATE_NUM1 = 'UPDATE_NUM1';
@@ -61,7 +61,8 @@ const testReducer = (state = initialState, action) => {
 const store = createStore(
   testReducer,
   applyMiddleware(
-    reduxIterator
+    reduxIterator,
+    thunkMiddleware
   )
 );
 

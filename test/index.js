@@ -235,5 +235,40 @@ describe('redux-iterator', () => {
 
   });
 
+  describe('Thunk Test', () => {
+    //goal is redux iterator goes first and then thunk second, won't mess with thunk, standard functions
+    //otherwise thunk will read generators as functions and try to invoke them...
+    afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
+
+    it('dispatches thunk without throwing errors', () => {
+      const desiredState = {
+        num1: 1,
+        num2: 2,
+        num3: 3,
+        name: '',
+        arr: [],
+      };
+
+      const thunk = () => {
+        return (dispatch) => {
+          //async something
+          console.log('hello')
+        }
+      }
+
+      store.dispatch(thunk());
+      // assert.deepEqual(store.getState(), desiredState);
+    });
+
+    //do a promise.All then dispatch the values...
+
+  });
+
   //closing bracket
 });
+
+
+// const getAllSpeakersFromServer = () => dispatch =>
+//   axios.get('/api/speakers')
+//   .then(speakers => dispatch(getAllSpeakers(speakers.data)))
+//   .catch(console.error)
