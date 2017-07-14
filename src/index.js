@@ -23,8 +23,8 @@ const reduxIterator = ({ dispatch }) => next => action => {
   }
 
   else if (typeof action === 'function' && action.prototype.toString().slice(8, -1) === 'Generator') {
-    for (let elem of action) {
-      console.log("generator")
+    //generator
+    for (let elem of action()) {
       dispatch(elem)
     }
   }

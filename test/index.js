@@ -109,7 +109,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), initialState);
     });
 
-    xit('dispatches null and returns error, as is not an object', () => {
+    it('dispatches null and returns error, as is not an object', () => {
 
       try {
         store.dispatch(null);
@@ -211,7 +211,7 @@ describe('redux-iterator', () => {
         yield createAction(UPDATE_NUM3, 3);
       }
 
-      store.dispatch(test());
+      store.dispatch(test);
       assert.deepEqual(store.getState(), desiredState);
     });
 
@@ -255,7 +255,7 @@ describe('redux-iterator', () => {
         yield createAction(UPDATE_ARRAY, ['Bar']);
       }
 
-      store.dispatch(test());
+      store.dispatch(test);
       assert.deepEqual(store.getState(), desiredState);
     });
 
