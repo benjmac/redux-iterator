@@ -35,8 +35,7 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      const arrTest = [];
-      arrTest.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
+      const arrTest = [createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34)];
       store.dispatch(arrTest);
       assert.deepEqual(store.getState(), desiredState);
     });
@@ -50,8 +49,7 @@ describe('redux-iterator', () => {
         arr: ['hello world'],
       };
 
-      const arrTest = [];
-      arrTest.push([createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world']));
+      const arrTest = [[createAction(UPDATE_NUM1, 55), createAction(UPDATE_NUM2, 12)], createAction(UPDATE_NUM3, 66), createAction(UPDATE_ARRAY, ['hello world'])];
       store.dispatch(arrTest);
       assert.deepEqual(store.getState(), desiredState);
     });
@@ -92,7 +90,7 @@ describe('redux-iterator', () => {
       };
 
       const objTest = {
-        key1: { 'key': createAction(UPDATE_NUM1, 9087) },
+        key1: { key: createAction(UPDATE_NUM1, 9087) },
         key2: [[createAction(UPDATE_NUM2, 34545)], { key3: createAction(UPDATE_NUM3, 958980049) }],
         key4: createAction(UPDATE_NAME, 'Dios-Mio'),
         key5: createAction(UPDATE_ARRAY, ['Diego', 'Maradona'])
@@ -104,7 +102,7 @@ describe('redux-iterator', () => {
 
     it('dispatches object with null value, not dispatched to store by redux-iterator', () => {
 
-      store.dispatch({ 'test': null });
+      store.dispatch({ test: null });
       assert.deepEqual(store.getState(), initialState);
     });
 
@@ -144,7 +142,7 @@ describe('redux-iterator', () => {
         name: 'Dan',
         arr: [],
       };
-      const mapTest = new Map([['key1', { 'test': createAction(UPDATE_NUM1, 89) }], ['key2', [createAction(UPDATE_NUM2, 123)]], ['key3', new Map([['key', createAction(UPDATE_NUM3, 123684)]])], ['key4', createAction(UPDATE_NAME, 'Dan')]]);
+      const mapTest = new Map([['key1', { test: createAction(UPDATE_NUM1, 89) }], ['key2', [createAction(UPDATE_NUM2, 123)]], ['key3', new Map([['key', createAction(UPDATE_NUM3, 123684)]])], ['key4', createAction(UPDATE_NAME, 'Dan')]]);
       store.dispatch(mapTest);
       assert.deepEqual(store.getState(), desiredState);
     });
@@ -181,7 +179,7 @@ describe('redux-iterator', () => {
       };
 
       const testSet = new Set();
-      testSet.add({ 'key': createAction(UPDATE_NUM1, 281) })
+      testSet.add({ key: createAction(UPDATE_NUM1, 281) })
         .add([createAction(UPDATE_NUM2, 330)])
         .add(new Map([['key1', createAction(UPDATE_NUM3, 8004)]]))
         .add(new Set([createAction(UPDATE_NAME, 'Mr. Jones')]))
@@ -225,9 +223,9 @@ describe('redux-iterator', () => {
 
       function *test() {
         yield new Set([createAction(UPDATE_NUM1, 7)]);
-        yield { 'test': createAction(UPDATE_NUM2, 8) };
+        yield { test: createAction(UPDATE_NUM2, 8) };
         yield [createAction(UPDATE_NUM3, 9)];
-        yield [{ 'test': new Map([['key1', createAction(UPDATE_NAME, 'Foo')]]) }];
+        yield [{ test: new Map([['key1', createAction(UPDATE_NAME, 'Foo')]]) }];
         yield createAction(UPDATE_ARRAY, ['Bar']);
       }
 
