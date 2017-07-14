@@ -261,6 +261,7 @@ describe('redux-iterator', () => {
     });
 
     //do a promise.All then dispatch the values...
+    //use async await?
 
   });
 
