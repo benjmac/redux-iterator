@@ -35,5 +35,3 @@ const reduxIterator = ({ dispatch }) => next => action => {
 }
 
 module.exports = reduxIterator;
-
-// test.prototype.toString().slice(8,-1) === 'Generator';

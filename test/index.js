@@ -215,29 +215,6 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches generator without invoking throws error', () => {
-      const desiredState = {
-        num1: 5,
-        num2: 6,
-        num3: 7,
-        name: '',
-        arr: [],
-      };
-
-      function* test() {
-        yield createAction(UPDATE_NUM1, 1);
-        yield createAction(UPDATE_NUM2, 2);
-        yield createAction(UPDATE_NUM3, 3);
-      }
-
-      try {
-        store.dispatch(test);
-      } catch (err) {
-        console.log(err);
-        expect(err).to.be.an('error');
-      }
-    });
-
     it('dispatches generator with nested items', () => {
       const desiredState = {
         num1: 7,
