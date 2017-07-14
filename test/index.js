@@ -27,7 +27,7 @@ describe('redux-iterator', () => {
 
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    xit('dispatches array', () => {
+    it('dispatches array', () => {
       const desiredState = {
         num1: 78,
         num2: 44,
@@ -42,7 +42,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches array with nested array', () => {
+    it('dispatches array with nested array', () => {
       const desiredState = {
         num1: 55,
         num2: 12,
@@ -62,7 +62,7 @@ describe('redux-iterator', () => {
     //test the object edge cases here?
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    xit('dispatches object', () => {
+    it('dispatches object', () => {
       const desiredState = {
         num1: 10,
         num2: 20,
@@ -83,7 +83,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches object with nested elements', () => {
+    it('dispatches object with nested elements', () => {
       const desiredState = {
         num1: 9087,
         num2: 34545,
@@ -103,7 +103,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches object with null value, not dispatched to store by redux-iterator', () => {
+    it('dispatches object with null value, not dispatched to store by redux-iterator', () => {
 
       store.dispatch({ 'test': null });
       assert.deepEqual(store.getState(), initialState);
@@ -123,7 +123,7 @@ describe('redux-iterator', () => {
 
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    xit('dispatches map', () => {
+    it('dispatches map', () => {
       const desiredState = {
         num1: 1,
         num2: 2,
@@ -137,7 +137,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches map with nested elements(object, array, map)', () => {
+    it('dispatches map with nested elements(object, array, map)', () => {
       const desiredState = {
         num1: 89,
         num2: 123,
@@ -155,7 +155,7 @@ describe('redux-iterator', () => {
 
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    xit('dispatches set', () => {
+    it('dispatches set', () => {
       const desiredState = {
         num1: 1234,
         num2: 5678,
@@ -172,7 +172,7 @@ describe('redux-iterator', () => {
       assert.deepEqual(store.getState(), desiredState);
     });
 
-    xit('dispatches set with nested items', () => {
+    it('dispatches set with nested items', () => {
       const desiredState = {
         num1: 281,
         num2: 330,
@@ -249,9 +249,9 @@ describe('redux-iterator', () => {
 
       function* test() {
         yield new Set([createAction(UPDATE_NUM1, 7)]);
-        yield {'test': createAction(UPDATE_NUM2, 8)};
+        yield { 'test': createAction(UPDATE_NUM2, 8) };
         yield [createAction(UPDATE_NUM3, 9)];
-        yield [{'test': new Map([['key1', createAction(UPDATE_NAME, 'Foo')]])}];
+        yield [{ 'test': new Map([['key1', createAction(UPDATE_NAME, 'Foo')]]) }];
         yield createAction(UPDATE_ARRAY, ['Bar']);
       }
 
