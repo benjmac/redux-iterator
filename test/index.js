@@ -14,7 +14,7 @@ describe('redux-iterator', () => {
     }
   }
 
-  describe('Testing reduxIterator is function', () => {
+  describe('Testing reduxIterator is a function', () => {
 
     it('Confirm it is a function', () => {
       assert.typeOf(reduxIterator, 'function');
@@ -35,7 +35,7 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      let arrTest = [];
+      const arrTest = [];
       arrTest.push(createAction(UPDATE_NUM1, 78), createAction(UPDATE_NUM2, 44), createAction(UPDATE_NUM3, 34));
       store.dispatch(arrTest);
       assert.deepEqual(store.getState(), desiredState);
@@ -58,7 +58,7 @@ describe('redux-iterator', () => {
   });
 
   describe('Object Test', () => {
-    //test the object edge cases here?
+
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
     it('dispatches object', () => {
@@ -70,7 +70,7 @@ describe('redux-iterator', () => {
         arr: ['Hello', 'World'],
       };
 
-      let objTest = {
+      const objTest = {
         key1: createAction(UPDATE_NUM1, 10),
         key2: createAction(UPDATE_NUM2, 20),
         key3: createAction(UPDATE_NUM3, 30),
@@ -91,7 +91,7 @@ describe('redux-iterator', () => {
         arr: ['Diego', 'Maradona'],
       };
 
-      let objTest = {
+      const objTest = {
         key1: { 'key': createAction(UPDATE_NUM1, 9087) },
         key2: [[createAction(UPDATE_NUM2, 34545)], { key3: createAction(UPDATE_NUM3, 958980049) }],
         key4: createAction(UPDATE_NAME, 'Dios-Mio'),
@@ -204,7 +204,7 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      function* test() {
+      function *test() {
         yield createAction(UPDATE_NUM1, 1);
         yield createAction(UPDATE_NUM2, 2);
         yield createAction(UPDATE_NUM3, 3);
@@ -223,7 +223,7 @@ describe('redux-iterator', () => {
         arr: ['Bar'],
       };
 
-      function* test() {
+      function *test() {
         yield new Set([createAction(UPDATE_NUM1, 7)]);
         yield { 'test': createAction(UPDATE_NUM2, 8) };
         yield [createAction(UPDATE_NUM3, 9)];
