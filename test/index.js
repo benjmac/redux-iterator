@@ -202,7 +202,7 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      function *test() {
+      function* test() {
         yield createAction(UPDATE_NUM1, 1);
         yield createAction(UPDATE_NUM2, 2);
         yield createAction(UPDATE_NUM3, 3);
@@ -221,7 +221,7 @@ describe('redux-iterator', () => {
         arr: ['Bar'],
       };
 
-      function *test() {
+      function* test() {
         yield new Set([createAction(UPDATE_NUM1, 7)]);
         yield { test: createAction(UPDATE_NUM2, 8) };
         yield [createAction(UPDATE_NUM3, 9)];
@@ -240,21 +240,28 @@ describe('redux-iterator', () => {
     //otherwise thunk will read generators as functions and try to invoke them...
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    it('dispatches thunk without throwing errors', () => {
+    it('Allows normal, non Generator function, to pass through', () => {
       const desiredState = {
         num1: 1,
-        num2: 2,
-        num3: 3,
+        num2: 0,
+        num3: 0,
         name: '',
         arr: [],
       };
 
+      const wait = () => {
+        return new Promise(setTimeout(() => {console.log('waited')}, 1000))
+      }
+
       const thunk = () => {
         return (dispatch) => {
-          //async something
-          console.log('hello')
+          wait()
+          .then(() => {
+            store.dispatch(createAction(UPDATE_NUM1, 1));
+          })
         }
       }
+
 
       store.dispatch(thunk());
       // assert.deepEqual(store.getState(), desiredState);
