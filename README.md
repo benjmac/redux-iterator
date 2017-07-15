@@ -1,6 +1,6 @@
 # redux-iterator
 
-### About
+## About
 Redux Iterator [middleware](https://github.com/reactjs/redux/blob/master/docs/advanced/Middleware.md) is capable of receiving Sets, Maps, Arrays, Objects and Generators. Once the middleware is reached, they’re iterated over and the nested actions are dispatched to the Redux store.
 
 Redux Iterator works seamlessly along side other middleware for Thunks and Promises. It makes the process of dispatching to the store cleaner by allowing you to group actions into one item/ location.
@@ -66,6 +66,44 @@ const store = createStore(
   applyMiddleware(iterator, thunk)
 );
 ```
+
+## Examples
+
+### With Arrays
+
+```js
+const arr = [updateName('Bob'), updateAge(33), updateCounter()]
+dispatch(arr);
+```
+
+### With Objects
+
+```js
+const obj = { name: updateName('Bob'), age: updateAge(33), counter: updateCounter() }
+dispatch(obj);
+```
+
+### With Sets
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+
+```
+
+### With Maps
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+
+```
+
+### With Generators
+
+```js
+import { createStore, applyMiddleware } from 'redux';
+
+```
+
 
 ## License
 
