@@ -5,7 +5,7 @@ Redux Iterator [middleware](https://github.com/reactjs/redux/blob/master/docs/ad
 
 Redux Iterator works seamlessly along side other middleware for Thunks and Promises. It makes the process of dispatching to the store cleaner by allowing you to group actions into one item/ location.
 
-**TEST** and **moreTest** this repository.
+**TEST** and **moreTests** this repository.
 
 Redux Iterator tests look like
 
@@ -13,32 +13,32 @@ Redux Iterator tests look like
 One code sample
 ```
 
-More descriptions
+## Why user iterator?
 
-```
-second code example
-```
+It makes updating the state easier and cleaner than before. No longer do there need to be multiple dispatches for various action creators. It can all be done within one.
 
-
-Some code examples
+Below is a simple example of what can be done. Obviously you can come up with many ways to take advantage of Sets, Maps, Arrays, Objects and Generators. Which all now are capable of being sent to the Redux store.
 
 ```js
-const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
+const NAME = 'NAME';
+const AGE = 'AGE';
 
-function increment() {
+const updateName = (name) => {
   return {
-    type: INCREMENT_COUNTER
+    type: NAME
+    name,
   };
 }
 
-function incrementAsync() {
-  return dispatch => {
-    setTimeout(() => {
-      // Yay! Can invoke sync or async actions with `dispatch`
-      dispatch(increment());
-    }, 1000);
+const updateAge = (age) => {
+  return {
+    type: AGE
+    age,
   };
 }
+
+dispatch([updateName('Bob'), updateAge(33)]);
+
 ```
 
 Test Test
