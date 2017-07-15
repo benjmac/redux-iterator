@@ -100,7 +100,7 @@ function* generator() {
 
 dispatch(generator);
 ```
-g
+
 ## License
 
 ISC
