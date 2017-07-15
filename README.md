@@ -50,7 +50,8 @@ npm install --save redux-iterator
 ```
 
 Then, to enable Redux Iterator, use [`applyMiddleware()`](http://redux.js.org/docs/api/applyMiddleware.html):
-As seen below, iterator must go before thunk middleware in order to avoid issues with thunk invoking the dispatched generator (meant for iterator)
+
+As seen below, iterator ***MUST*** go before thunk middleware in order to avoid issues with thunk invoking the dispatched generator (meant for iterator)
 
 ```js
 import { createStore, applyMiddleware } from 'redux';
