@@ -64,3 +64,7 @@ const store = createStore(
   applyMiddleware(iterator, thunk)
 );
 ```
+
+## License
+
+ISC
