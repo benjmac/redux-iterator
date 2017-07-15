@@ -13,7 +13,7 @@ Redux Iterator tests look like
 One code sample
 ```
 
-## Why user iterator?
+## Why use iterator?
 
 It makes updating the state easier and cleaner than before. No longer do there need to be multiple dispatches for various action creators. It can all be done within one.
 
@@ -86,15 +86,15 @@ dispatch(obj);
 ### With Sets
 
 ```js
-import { createStore, applyMiddleware } from 'redux';
-
+const set = new Map([['key1', updateName('Bob')], ['key2', updateAge(33)], ['key3', updateCounter()]]);
+dispatch(set);
 ```
 
 ### With Maps
 
 ```js
-import { createStore, applyMiddleware } from 'redux';
-
+const map = new Map([['key1', updateName('Bob')], ['key2', updateAge(33)], ['key3', updateCounter()]]);
+dispatch(map);
 ```
 
 ### With Generators
