@@ -86,7 +86,10 @@ dispatch(obj);
 ### With Sets
 
 ```js
-const set = new Map([['key1', updateName('Bob')], ['key2', updateAge(33)], ['key3', updateCounter()]]);
+const set = new Set();
+      set.add(updateName('Bob'))
+        .add(updateAge(33))
+        .add(updateCounter());
 dispatch(set);
 ```
 
@@ -100,8 +103,13 @@ dispatch(map);
 ### With Generators
 
 ```js
-import { createStore, applyMiddleware } from 'redux';
+function* generator() {
+        yield updateName('Bob');
+        yield updateAge(33);
+        yield updateCounter();
+      }
 
+dispatch(generator);
 ```
 
 
