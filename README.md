@@ -5,7 +5,7 @@ Redux Iterator [middleware](https://github.com/reactjs/redux/blob/master/docs/ad
 
 Redux Iterator works seamlessly along side other middleware for Thunks and Promises. It makes the process of dispatching to the store cleaner by allowing you to group actions into one item/ location.
 
-## Why use iterator?
+## Why use Redux Iterator?
 
 It makes updating the state easier and cleaner than before. No longer do there need to be multiple dispatches for various action creators. It can all be done within one.
 
@@ -100,7 +100,7 @@ function* generator() {
 
 dispatch(generator);
 ```
-
+g
 ## License
 
 ISC
