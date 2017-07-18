@@ -243,23 +243,25 @@ describe('redux-iterator', () => {
     it('Allows non Generator function to pass through', () => {
       const desiredState = {
         num1: 1,
-        num2: 0,
-        num3: 0,
+        num2: 2,
+        num3: 567,
         name: '',
         arr: [],
       };
 
       const wait = (t) => {
-        return new Promise((resolve) => {
-          setTimeout(resolve, t)
-        });
+          setTimeout(() => {
+            return Promise.resolve([1, 2, 567]);
+          }, t)
       }
 
       const thunkTest = () => {
         return (dispatch) => {
-          wait(1000)
-            .then(() => {
-              store.dispatch(createAction(UPDATE_NUM1, 1));
+          Promise.resolve([1, 2, 567])
+          // wait(1000)
+            .then((nums) => {
+              console.log('nums here....',nums);
+              store.dispatch([createAction(UPDATE_NUM1, nums[0]), createAction(UPDATE_NUM2, nums[1]), createAction(UPDATE_NUM3, nums[2])]);
             })
             .then(() => {
               console.log('store...', store.getState());
