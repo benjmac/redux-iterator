@@ -250,17 +250,18 @@ describe('redux-iterator', () => {
       };
 
       const wait = (t) => {
+        return new Promise(() => {
           setTimeout(() => {
-            return Promise.resolve([1, 2, 567]);
+            Promise.resolve([1, 2, 567]);
           }, t)
+        });
       }
 
       const thunkTest = () => {
         return (dispatch) => {
-          Promise.resolve([1, 2, 567])
-          // wait(1000)
+          wait(1000)
             .then((nums) => {
-              console.log('nums here....',nums);
+              console.log('num here....', nums);
               store.dispatch([createAction(UPDATE_NUM1, nums[0]), createAction(UPDATE_NUM2, nums[1]), createAction(UPDATE_NUM3, nums[2])]);
             })
             .then(() => {
@@ -273,16 +274,7 @@ describe('redux-iterator', () => {
       store.dispatch(thunkTest());
     });
 
-    //do a promise.All then dispatch the values...
-    //use async await?
-
   });
 
   //closing bracket
 });
-
-
-// const getAllSpeakersFromServer = () => dispatch =>
-//   axios.get('/api/speakers')
-//   .then(speakers => dispatch(getAllSpeakers(speakers.data)))
-//   .catch(console.error)
