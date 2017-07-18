@@ -261,7 +261,7 @@ describe('redux-iterator', () => {
         return (dispatch) => {
           wait(1000)
             .then((nums) => {
-              store.dispatch([createAction(UPDATE_NUM1, nums[0]), createAction(UPDATE_NUM2, nums[1]), createAction(UPDATE_NUM3, nums[2])]);
+              dispatch([createAction(UPDATE_NUM1, nums[0]), createAction(UPDATE_NUM2, nums[1]), createAction(UPDATE_NUM3, nums[2])]);
             })
             .then(() => {
               assert.deepEqual(store.getState(), desiredState)
