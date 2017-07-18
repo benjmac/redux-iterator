@@ -240,7 +240,7 @@ describe('redux-iterator', () => {
     //otherwise thunk will read generators as functions and try to invoke them...
     afterEach('set store to initial state', () => store.dispatch(createAction(RESET_STATE)));
 
-    it('Allows normal, non Generator function, to pass through', () => {
+    it('Allows non Generator function to pass through', () => {
       const desiredState = {
         num1: 1,
         num2: 0,
