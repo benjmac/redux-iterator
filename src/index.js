@@ -13,7 +13,7 @@ const reduxIterator = ({ dispatch }) => next => action => {
   }
   else if (typeof action === 'object' && action !== null && !action.type) {
     for (let key in action) {
-      if (typeof action[key] === 'object' && action[key] !== null) {
+      if (action[key] !== null) {
         dispatch(action[key]);
       }
     }

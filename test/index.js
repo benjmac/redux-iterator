@@ -91,7 +91,7 @@ describe('redux-iterator', () => {
       const objTest = {
         key1: { key: createAction(UPDATE_NUM1, 9087) },
         key2: [[createAction(UPDATE_NUM2, 34545)], { key3: createAction(UPDATE_NUM3, 958980049) }],
-        key4: createAction(UPDATE_NAME, 'Dios-Mio'),
+        key4: new Map([['key1', createAction(UPDATE_NAME, 'Dios-Mio')]]),
         key5: createAction(UPDATE_ARRAY, ['Diego', 'Maradona'])
       }
 
