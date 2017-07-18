@@ -261,11 +261,9 @@ describe('redux-iterator', () => {
         return (dispatch) => {
           wait(1000)
             .then((nums) => {
-              console.log('num here....', nums);
               store.dispatch([createAction(UPDATE_NUM1, nums[0]), createAction(UPDATE_NUM2, nums[1]), createAction(UPDATE_NUM3, nums[2])]);
             })
             .then(() => {
-              console.log('store...', store.getState());
               assert.deepEqual(store.getState(), desiredState)
             })
         }
@@ -275,6 +273,4 @@ describe('redux-iterator', () => {
     });
 
   });
-
-  //closing bracket
 });
