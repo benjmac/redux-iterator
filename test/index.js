@@ -1,9 +1,8 @@
 import store, { RESET_STATE, UPDATE_NUM1, UPDATE_NUM2, UPDATE_NUM3, UPDATE_ARRAY, UPDATE_NAME, initialState } from './store.js';
+import reduxIterator from '../src/index';
 import chai from 'chai';
 const assert = chai.assert;
 const expect = chai.expect;
-
-const reduxIterator = require('../src/index');
 
 describe('redux-iterator', () => {
 
