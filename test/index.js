@@ -249,22 +249,26 @@ describe('redux-iterator', () => {
         arr: [],
       };
 
-      const wait = () => {
-        return new Promise(setTimeout(() => {console.log('waited')}, 1000))
+      const wait = (t) => {
+        return new Promise( (resolve) => {
+          setTimeout(resolve, t)
+        });
       }
 
       const thunk = () => {
         return (dispatch) => {
-          wait()
-          .then(() => {
-            store.dispatch(createAction(UPDATE_NUM1, 1));
-          })
+          wait(1000)
+            .then(() => {
+              console.log('are we getting to the then???')
+              store.dispatch(createAction(UPDATE_NUM1, 1));
+            })
         }
       }
 
 
       store.dispatch(thunk());
-      // assert.deepEqual(store.getState(), desiredState);
+      console.log('state...', store.getState());
+      assert.deepEqual(store.getState(), desiredState);
     });
 
     //do a promise.All then dispatch the values...
