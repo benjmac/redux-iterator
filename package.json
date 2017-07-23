@@ -1,6 +1,6 @@
 {
   "name": "redux-iterator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "middleware that iterates over and dispatches actions",
   "main": "src/index.js",
   "files": [
@@ -18,7 +18,13 @@
     "redux",
     "iterator",
     "middleware",
-    "redux-middleware"
+    "redux-middleware",
+    "arrays",
+    "objects",
+    "sets",
+    "maps",
+    "generators",
+    "react-redux"
   ],
   "author": "Ben McCain",
   "license": "ISC",
